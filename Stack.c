@@ -67,7 +67,10 @@ int main(void)
  */
 Node_t *newNode(const char *value, Node_t *next)
 {
-    return NULL;
+    Node_t* fourhead = malloc(sizeof(Node_t));
+    fourhead -> next = next;
+    fourhead -> value = strdup(value);
+    return fourhead;
 }
 
 /**
@@ -77,18 +80,21 @@ Node_t *newNode(const char *value, Node_t *next)
  */
 Node_t *deleteNode(Node_t *current, char **value)
 {
-    return NULL;
+    *value = (*current).value;
+    Node_t* nextNode = (*current).next;
+    free(current);
+    return nextNode;
 }
-
-/**
- * Pop the string from the top of the stack using deleteNode
- * update the top of the stack
- * puts the popped string onto `value`
+/**current
+ * Pop the string from the tcurrentop of the stack using deleteNode
+ * update the top of the stacurrentck
+ * puts the popped string oncurrentto `value`
  * return true on success
  */
 bool pop(Node_t **Stack, char **value)
 {
-    return false;
+    *Stack = deleteNode(*Stack, value);
+    return true;
 }
 
 /**
@@ -98,5 +104,7 @@ bool pop(Node_t **Stack, char **value)
  */
 bool push(Node_t **Stack, const char *value)
 {
-    return false;
+    Node_t* temp = newNode(value, NULL);
+    temp->next = *Stack;
+    *Stack = temp;
 }
