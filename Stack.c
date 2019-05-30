@@ -93,6 +93,9 @@ Node_t *deleteNode(Node_t *current, char **value)
  */
 bool pop(Node_t **Stack, char **value)
 {
+    if(Stack == NULL){
+        return false;
+    }
     *Stack = deleteNode(*Stack, value);
     return true;
 }
@@ -107,4 +110,5 @@ bool push(Node_t **Stack, const char *value)
     Node_t* temp = newNode(value, NULL);
     temp->next = *Stack;
     *Stack = temp;
+    return true;
 }
